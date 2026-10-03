@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/dot-preview.png" alt="Dot App Preview" width="700">
+  <img src="./logo.png" alt="Dot App Preview" width="700">
 </p>
 
 <h1 align="center">Dot</h1>
