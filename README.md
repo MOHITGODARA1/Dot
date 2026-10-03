@@ -31,7 +31,7 @@ Dot is currently in development.
 ## Getting Started
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/MOHITGODARA1/Dot.git
 cd dot
 ```
 
