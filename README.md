@@ -1,24 +1,22 @@
-# Dot
-
 <p align="center">
-  <img src="./logo.png" alt="Dot App Preview" width="700">
+  <img src="./assets/dot-preview.png" alt="Dot App Preview" width="700">
 </p>
+
+<h1 align="center">Dot</h1>
 
 <p align="center">
   <strong>Build better habits, together.</strong>
 </p>
 
-Dot is a shared habit and routine tracker designed for couples and friends. It helps two people stay connected, track daily activities, and motivate each other to maintain consistent routines.
+---
 
-## Features
+## What is Dot?
 
-- **Shared Habit Tracking:** Create and track daily habits together.
-- **Daily Routines:** Organize activities such as workouts, studying, and sleep schedules.
-- **Activity Timeline:** View your partner's daily activities and progress.
-- **Progress Tracking:** See completed and missed tasks.
-- **Missed Habit Notes:** Add a reason when you miss a scheduled activity.
-- **Smart Alarms:** Set reminders for important routines.
-- **Partner Connection:** Connect with one person and share your daily progress.
+Dot is a shared habit and routine tracker for couples and friends. It connects two people so they can create and track daily habits together, organize routines like workouts, studying, and sleep schedules, and see each other's activities and progress on a shared timeline.
+
+You can see which tasks were completed or missed, add a note explaining why you missed a scheduled activity, and set smart alarms for the routines that matter most.
+
+Dot is built around encouragement, consistency, and mutual support, not pressure or competition.
 
 ## Tech Stack
 
@@ -28,27 +26,16 @@ Dot is a shared habit and routine tracker designed for couples and friends. It h
 
 ## Project Status
 
-Currently in development.
-
-## Our Philosophy
-
-Dot is built around encouragement, consistency, and mutual support—not pressure or competition.
+Dot is currently in development.
 
 ## Getting Started
 
-Clone the repository:
-
 ```bash
-git clone https://github.com/MOHITGODARA1/Dot.git
-```
-
-Navigate to the project directory:
-
-```bash
+git clone <repository-url>
 cd dot
 ```
 
-Install dependencies and start the application according to the setup instructions.
+Install dependencies and start the application by following the setup instructions for each part of the project.
 
 ---
 
