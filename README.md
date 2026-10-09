@@ -20,7 +20,7 @@ Dot is built around encouragement, consistency, and mutual support, not pressure
 
 ## Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** React native
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 
