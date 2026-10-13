@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AccessibilityInfo,
   Animated,
   Easing,
   Image,
   Pressable,
-  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -58,11 +57,12 @@ export default function WelcomeScreen({ navigation }) {
   const titleSize = Math.min(Math.max(width * 0.11, 36), 50);
   const cardSize = Math.min(width * 0.6, height * 0.32, 280);
 
-  // Animation values
-  const cardIn = useRef(new Animated.Value(0)).current;
-  const chipAIn = useRef(new Animated.Value(0)).current;
-  const chipBIn = useRef(new Animated.Value(0)).current;
-  const float = useRef(new Animated.Value(0)).current;
+  // Animation values, stored in state (not refs) so reading them
+  // during render is safe.
+  const [cardIn] = useState(() => new Animated.Value(0));
+  const [chipAIn] = useState(() => new Animated.Value(0));
+  const [chipBIn] = useState(() => new Animated.Value(0));
+  const [float] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
     let mounted = true;
@@ -120,9 +120,7 @@ export default function WelcomeScreen({ navigation }) {
   const chipFloat = float.interpolate({ inputRange: [0, 1], outputRange: [0, 8] });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.blue} />
-
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
       <View style={styles.content}>
         {/* Headline */}
         <View>
@@ -214,7 +212,7 @@ export default function WelcomeScreen({ navigation }) {
               dotColor={COLORS.coral}
               name="Aman"
               text="at the gym since 7:25"
-              style={{ top: -16, left: -width * 0.07 }}
+              style={{ top: -16, left: -Math.min(width * 0.07, 28) }}
             />
             <StatusChip
               anim={chipBIn}
@@ -223,7 +221,7 @@ export default function WelcomeScreen({ navigation }) {
               dotColor={COLORS.purple}
               name="Simran"
               text="finished reading"
-              style={{ bottom: -16, right: -width * 0.07 }}
+              style={{ bottom: -16, right: -Math.min(width * 0.07, 28) }}
             />
           </View>
         </View>
@@ -231,13 +229,13 @@ export default function WelcomeScreen({ navigation }) {
         {/* Actions */}
         <View style={styles.bottomSection}>
           <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Get started"
-            style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
-            onPress={() => navigation.navigate('Login')}
-          >
-            <Text style={styles.buttonText}>Get Started</Text>
-          </Pressable>
+              accessibilityRole="button"
+              accessibilityLabel="Get started"
+              style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+              onPress={() => navigation.navigate('Register')}
+            >
+              <Text style={styles.buttonText}>Get Started</Text>
+            </Pressable>
 
           <Pressable
             accessibilityRole="link"
