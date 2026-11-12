@@ -1,0 +1,605 @@
+# Dot — UI/UX Design Documentation
+
+**Product:** Dot
+**Document:** UI/UX Design Specification
+**Version:** 1.0
+**Platform:** Responsive Web Application
+**Status:** MVP Design Specification
+
+---
+
+# 1. Design Overview
+
+## 1.1 Product Identity
+
+Dot is a shared activity and habit-tracking platform designed for couples.
+
+It allows two partners to share their daily activities, track actual time spent on activities, create recurring habits and stay connected through a shared activity timeline.
+
+**Tagline:** Grow together, every day.
+
+## 1.2 Design Objective
+
+The purpose of Dot's design is to create a simple, elegant and personal experience.
+
+The interface should make it easy for users to:
+
+- Understand what their partner is doing.
+- Start and track their own activities.
+- Monitor elapsed activity time.
+- Create recurring habits.
+- View upcoming routines.
+- Review previous activities.
+- Stay connected through shared updates.
+
+The design must prioritize activity tracking and shared visibility rather than traditional task completion.
+
+# 2. Brand Design System
+
+## 2.1 Colour Palette
+
+**Theme:** Dusty Blue + Ivory
+
+| Colour Name | Hex Code | Usage |
+|---|---|---|
+| Ivory | #F5F3EE | Main application background |
+| Soft Blue | #DCE5EA | Secondary surfaces |
+| Dusty Blue | #9BAFBC | Primary accents |
+| Slate Blue | #526C7A | Primary buttons and emphasis |
+| Deep Navy | #293D4A | Headings and primary text |
+| White | #FFFFFF | Cards and modal surfaces |
+| Muted Grey | #777F84 | Secondary text |
+
+### Colour Usage Rules
+
+- Use Ivory as the primary page background.
+- Use White for cards, forms and modal surfaces.
+- Use Dusty Blue for selected states and visual accents.
+- Use Slate Blue for primary buttons.
+- Use Deep Navy for headings and important text.
+- Use Soft Blue for secondary backgrounds.
+- Maintain readable text contrast.
+
+Avoid neon colours, excessive gradients and overly saturated accents.
+
+## 2.2 Typography
+
+**Primary heading font:** DM Serif Display
+
+**Body font:** DM Sans
+
+Recommended hierarchy:
+
+| Element | Typography |
+|---|---|
+| Main page heading | DM Serif Display, 32–40px |
+| Section heading | DM Serif Display, 22–28px |
+| Card heading | DM Sans, 16–20px, semibold |
+| Body text | DM Sans, 14–16px |
+| Labels | DM Sans, 12–14px |
+| Statistics | DM Sans, 24–32px, semibold |
+
+Maintain consistent font weights and line heights.
+
+## 2.3 General Visual Style
+
+- Minimal and elegant.
+- Soft rounded corners.
+- Subtle shadows.
+- Thin and clean borders.
+- Spacious layouts.
+- Simple line icons.
+- Consistent alignment.
+- Restrained animations.
+- Clear visual hierarchy.
+
+The application should feel like a premium lifestyle productivity product.
+
+# 3. Application Layout
+
+## 3.1 Desktop Layout
+
+Use a fixed left sidebar and a flexible main content area.
+
+### Sidebar
+
+Include:
+
+- Dot logo.
+- Dashboard.
+- Live Activity.
+- Habits.
+- Together.
+- Settings.
+
+The sidebar should clearly indicate the currently selected page.
+
+### Top Navigation
+
+Include:
+
+- Current page title.
+- Date or contextual information.
+- Notification icon.
+- User profile.
+- Profile dropdown.
+
+### Main Content
+
+Use a responsive content grid with consistent spacing.
+
+Recommended:
+- Page padding: 28–36px.
+- Card padding: 20–24px.
+- Card radius: 14–18px.
+- Consistent vertical spacing.
+
+## 3.2 Mobile Layout
+
+The mobile interface should use:
+
+- Compact top navigation.
+- Bottom navigation.
+- Stacked cards.
+- Full-width activity controls.
+- Touch-friendly buttons.
+- Scrollable content.
+
+The activity timer should remain easily accessible.
+
+# 4. MVP Pages
+
+## 4.1 Landing Page
+
+### Objective
+
+Introduce Dot and communicate its purpose.
+
+### Sections
+
+1. Navigation bar.
+2. Hero section.
+3. Product preview.
+4. How Dot Works.
+5. Live Activity feature.
+6. Shared Habits feature.
+7. Together feature.
+8. Final call to action.
+9. Footer.
+
+### Hero Content
+
+Headline:
+
+"Grow together, every day."
+
+Supporting description:
+
+"Stay connected through everyday activities. Share your routines, track your time and build better habits together."
+
+Primary CTA: Get Started
+
+Secondary CTA: Explore Dot
+
+### Visual Direction
+
+Show a realistic preview of the shared activity dashboard.
+
+Use minimal illustrations and subtle decorative details.
+
+## 4.2 Authentication Pages
+
+Create the following screens:
+
+- Registration.
+- Login.
+- Forgot Password.
+- Profile Setup.
+- Partner Invitation.
+- Partner Invitation Acceptance.
+
+### Design Requirements
+
+- Centered authentication card.
+- Clear form labels.
+- Simple validation states.
+- Password visibility control.
+- Consistent input styling.
+- Minimal distractions.
+
+## 4.3 Dashboard
+
+### Objective
+
+Provide an overview of both partners' daily activities.
+
+### Main Sections
+
+**A. Welcome Header**
+
+Example:
+
+"Good morning, Mohit."
+
+Display the current date and a short contextual message.
+
+**B. Partner Status**
+
+Show both partner profiles and their current status.
+
+Example:
+
+- Partner 1: Gym — 42 minutes.
+- Partner 2: Reading — 25 minutes.
+
+**C. Live Activity Cards**
+
+Each card should display:
+
+- Partner avatar.
+- Activity icon.
+- Activity name.
+- Start time.
+- Elapsed duration.
+- Activity status.
+
+Use a distinct visual style for active, paused and inactive states.
+
+**D. Today's Habits**
+
+Display scheduled habits with:
+
+- Habit name.
+- Preferred time.
+- Expected duration.
+- Schedule information.
+- Start Activity action.
+
+**E. Upcoming Habits**
+
+Show upcoming scheduled routines.
+
+**F. Recent Activity**
+
+Display recently completed activity sessions.
+
+**G. Daily Overview**
+
+Show the amount of time each partner has tracked today.
+
+### Visual Priority
+
+Live Activity cards should be the most prominent element on the Dashboard.
+
+## 4.4 Live Activity Page
+
+### Objective
+
+Allow users to start, track, pause and end activities.
+
+### Activity Selection
+
+Include:
+
+- Activity search.
+- Category filters.
+- Predefined activity cards.
+- Custom activity option.
+
+Suggested categories:
+
+- Fitness.
+- Work.
+- Study.
+- Health.
+- Personal.
+- Leisure.
+- Other.
+
+Suggested activities:
+
+- Gym.
+- Studying.
+- Working.
+- Sleeping.
+- Reading.
+- Cooking.
+- Walking.
+- Meditation.
+
+### Activity Session Interface
+
+Display:
+
+- Selected activity icon.
+- Activity name.
+- Large timer.
+- Start timestamp.
+- Pause button.
+- Resume button.
+- End Activity button.
+- Optional notes.
+
+### Activity States
+
+**Idle:** No activity is running.
+
+**Running:** Timer is actively counting.
+
+**Paused:** Timer is temporarily stopped.
+
+**Completed:** Activity has ended and its duration is displayed.
+
+### Completed Session Summary
+
+After ending an activity, show:
+
+- Activity name.
+- Start time.
+- End time.
+- Total duration.
+- Optional notes.
+- Related habit, if applicable.
+
+Include a clear confirmation action.
+
+## 4.5 Habits Page
+
+### Objective
+
+Allow partners to create and manage shared recurring habits.
+
+### Habit List
+
+Each habit card should contain:
+
+- Habit name.
+- Icon.
+- Category.
+- Scheduled weekdays.
+- Preferred start time.
+- Expected duration.
+- Reminder information.
+- Edit and archive actions.
+
+### Create Habit Modal
+
+Fields:
+
+- Habit name.
+- Description.
+- Category.
+- Icon selection.
+- Schedule selection.
+- Preferred time.
+- Expected duration.
+- Reminder settings.
+
+Primary action: Save Habit.
+
+### Important Behaviour
+
+Creating a recurring habit should automatically generate its scheduled occurrences.
+
+Upcoming occurrences should appear on the Dashboard.
+
+The user must start an actual activity session to record time spent.
+
+Do not use checkbox-based completion as the main interaction.
+
+## 4.6 Together Page
+
+### Objective
+
+Provide a shared space where partners can see each other's daily activities.
+
+### Sections
+
+**Partner Profiles**
+
+Display both partner profiles and current statuses.
+
+**Shared Activity Timeline**
+
+Show activity events chronologically.
+
+Example:
+
+- 6:00 PM — Mohit started Gym.
+- 6:45 PM — Partner started Reading.
+- 7:00 PM — Mohit completed Gym, 60 minutes.
+
+**Activity Feed**
+
+Show:
+
+- Activity started.
+- Activity paused.
+- Activity resumed.
+- Activity completed.
+
+**Reactions**
+
+Allow partners to react to activity updates.
+
+**Encouragement Messages**
+
+Provide short supportive messages.
+
+Keep the interface personal and simple.
+
+## 4.7 Settings Page
+
+### Sections
+
+- Profile Management.
+- Partner Connection.
+- Timezone.
+- Notification Preferences.
+- Reminder Preferences.
+- Appearance Settings.
+- Account Security.
+- Disconnect Partner.
+
+# 5. Reusable UI Components
+
+Create reusable components to maintain visual consistency.
+
+Suggested components:
+
+- Sidebar.
+- Topbar.
+- ProfileAvatar.
+- PartnerStatusCard.
+- ActivityCard.
+- ActivityTimer.
+- ActivitySelector.
+- ActivityCategoryFilter.
+- HabitCard.
+- HabitFormModal.
+- UpcomingHabitCard.
+- ActivityTimeline.
+- ActivityHistoryItem.
+- NotificationDropdown.
+- ConfirmationModal.
+- EmptyState.
+- LoadingState.
+- ToastNotification.
+
+Each component should have consistent styling and predictable interaction states.
+
+# 6. Interaction and Animation Guidelines
+
+Use subtle animations to improve the experience.
+
+Recommended animations:
+
+- Page fade transitions.
+- Card hover transitions.
+- Modal entrance and exit.
+- Smooth timer updates.
+- Activity state transitions.
+- Button hover effects.
+- Progress bar animations.
+- Sidebar transitions.
+
+Avoid:
+
+- Excessive bouncing.
+- Neon effects.
+- Flashing backgrounds.
+- Unnecessary animations.
+- Long or distracting transitions.
+
+Animations should feel smooth and purposeful.
+
+# 7. UI States
+
+Every important feature should have the following visual states where applicable:
+
+- Default.
+- Hover.
+- Active.
+- Selected.
+- Disabled.
+- Loading.
+- Success.
+- Error.
+- Empty.
+
+Specific application states:
+
+- No partner connected.
+- No activities available.
+- No habits created.
+- Activity running.
+- Activity paused.
+- Activity completed.
+- Habit archived.
+- No upcoming habits.
+- No recent activity.
+
+# 8. Responsive Design Requirements
+
+Support:
+
+- Desktop: 1440px and above.
+- Laptop: 1024px–1439px.
+- Tablet: 768px–1023px.
+- Mobile: 320px–767px.
+
+Ensure:
+
+- No horizontal overflow.
+- Cards adapt to available space.
+- Navigation remains accessible.
+- Timers remain readable.
+- Buttons are touch-friendly.
+- Modals fit smaller screens.
+- Timelines remain easy to navigate.
+
+# 9. Accessibility Requirements
+
+- Use sufficient colour contrast.
+- Provide visible keyboard focus states.
+- Use meaningful labels for controls.
+- Provide accessible icon buttons.
+- Do not rely on colour alone to communicate activity status.
+- Respect reduced-motion preferences.
+- Use readable font sizes.
+
+# 10. Design Scope
+
+### Included in MVP
+
+- Landing Page.
+- Authentication Screens.
+- Partner Invitation.
+- Dashboard.
+- Live Activity.
+- Habits.
+- Together.
+- Settings.
+
+### Excluded from MVP
+
+- Dedicated Calendar.
+- Analytics Dashboard.
+- Challenges.
+- Advanced Reporting.
+- Advanced Chat.
+- Native Mobile App.
+
+These may be introduced in future versions.
+
+# 11. Final Design Quality Checklist
+
+- [ ] Official Dusty Blue + Ivory palette applied.
+- [ ] DM Serif Display and DM Sans configured.
+- [ ] Consistent desktop sidebar.
+- [ ] Responsive mobile navigation.
+- [ ] Dashboard completed.
+- [ ] Live Activity interface completed.
+- [ ] Habit management interface completed.
+- [ ] Together page completed.
+- [ ] Settings completed.
+- [ ] Authentication screens completed.
+- [ ] Activity states designed.
+- [ ] Empty and loading states designed.
+- [ ] Reusable components established.
+- [ ] Responsive layouts verified.
+- [ ] Accessibility basics covered.
+
+---
+
+**Final Design Principle**
+
+Dot is a shared daily activity experience, not a conventional task manager.
+
+Its design must make three things immediately understandable:
+
+1. What am I doing right now?
+2. What is my partner doing right now?
+3. How much time are we spending on our daily activities?
+
+Every design decision should support these three questions.

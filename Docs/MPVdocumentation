@@ -1,0 +1,164 @@
+# Dot — MVP Scope Document
+
+**Product:** Dot
+**Version:** 1.1
+**Platform:** Responsive Web Application
+**Status:** MVP Planning
+
+## 1. MVP Objective
+
+Build a shared activity and habit-tracking platform for couples.
+
+The MVP allows two partners to share their current activities, track actual time spent, create recurring habits and view each other's activity.
+
+The primary focus is real-time activity tracking and shared visibility.
+
+
+## 2. MVP Features
+
+### 2.1 Authentication
+- Registration.
+- Login and logout.
+- Forgot password.
+- Profile management.
+- Secure authentication.
+
+### 2.2 Partner Connection
+- Invite partner through a unique link or code.
+- Accept or reject invitation.
+- Create a shared couple workspace.
+- Display both partner profiles.
+- Restrict access to connected partners.
+
+### 2.3 Live Activity
+- Browse predefined activities.
+- Select an activity.
+- Start activity timer.
+- Pause and resume.
+- End activity.
+- Add optional notes.
+- View elapsed duration.
+- View activity history.
+- Show partner's current activity.
+- Update partner activity status in real time.
+
+Example activities:
+- Gym
+- Studying
+- Working
+- Sleeping
+- Reading
+- Cooking
+- Walking
+- Custom activities
+
+### 2.4 Habit Management
+- Create shared habits.
+- Select categories and icons.
+- Set recurring weekdays.
+- Set preferred start time.
+- Define expected duration.
+- Configure reminders.
+
+Example:
+
+Habit: Gym
+Schedule: Monday, Wednesday, Friday
+Preferred time: 6:00 PM
+Expected duration: 60 minutes
+
+Scheduled occurrences should be stored and available to display as upcoming habits on the Dashboard. A dedicated calendar is postponed.
+
+### 2.5 Dashboard
+- Personalized greeting.
+- Both partner profiles.
+- Current activities.
+- Live elapsed timers.
+- Today's scheduled habits.
+- Upcoming habits.
+- Recent activity history.
+- Daily tracked time.
+- Weekly activity overview.
+- Quick Start Activity action.
+
+### 2.6 Together
+- Shared activity feed.
+- Partner activity updates.
+- Reactions.
+- Short encouragement messages.
+- Recent activity sessions.
+- Shared progress overview.
+
+### 2.7 Settings
+- Profile management.
+- Reminder preferences.
+
+## 3. MVP Pages
+
+1. Landing Page
+2. Registration
+3. Login
+5. Partner Invitation
+6. Partner Connection
+7. Dashboard
+8. Live Activity
+9. Habits
+10. Together
+11. Settings
+
+## 4. Core User Journey
+
+1. User registers.
+2. User completes their profile.
+3. User invites their partner.
+4. Partner accepts the invitation.
+5. Both enter their shared workspace.
+6. They create recurring habits.
+7. Scheduled habits appear on the Dashboard.
+8. A user selects an activity and starts it.
+9. Dot tracks the elapsed time.
+10. The partner sees the ongoing activity.
+11. The user ends the activity.
+12. Dot saves the actual duration.
+13. Both partners can review the activity history.
+
+## 5. Product Rules
+
+- A couple workspace initially supports two active partners.
+- Both partners can view shared habits and activities.
+- Both partners can create and manage shared habits.
+- Activity sessions belong to the user who starts them.
+- Planned habits and actual activity sessions are separate concepts.
+- A scheduled habit is not automatically completed.
+- Historical activity records must be preserved.
+- Archived habits must not erase activity history.
+- Timestamps must be stored consistently and displayed in the appropriate local timezone.
+
+
+## 7. MVP Development Priorities
+
+**Priority 1:** Authentication and partner connection.
+
+**Priority 2:** Live activity tracking.
+
+**Priority 3:** Habit creation and recurring schedules.
+
+**Priority 4:** Dashboard and partner activity visibility.
+
+**Priority 5:** Activity history.
+
+**Priority 6:** Together feed, reactions and encouragement messages.
+
+## 8. MVP Success Criteria
+
+- Two users can connect successfully.
+- Both partners can see shared information.
+- Users can start, pause, resume and end activities.
+- Timer values remain accurate after refreshing the page.
+- Completed activity sessions are saved correctly.
+- Recurring habits can be created and managed.
+- Upcoming scheduled habits appear on the Dashboard.
+- Partner activity updates appear without manual refresh.
+- Activity history remains accessible.
+
+**MVP Principle:** Build a reliable shared activity experience first. Add the dedicated calendar and advanced insights only after the core experience works well.
