@@ -12,7 +12,7 @@ const links = [
 const focusRing =
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate'
 
-export default function Navbar() {
+export default function Navbar({ onGetStarted }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -206,7 +206,8 @@ export default function Navbar() {
 
 
               <a
-                  href="#about"
+                  href="#login"
+                  onClick={(event) => { event.preventDefault(); onGetStarted?.() }}
                   onMouseMove={onSpotlight}
                   className={`group relative hidden items-center gap-3 overflow-hidden rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-xs font-semibold text-white transition-colors duration-300 hover:bg-navy sm:inline-flex ${focusRing}`}
               >
@@ -310,9 +311,9 @@ export default function Navbar() {
                     Log In
                   </a>
                   <a
-                      href="#about"
+                      href="#login"
                       tabIndex={open ? 0 : -1}
-                      onClick={() => setOpen(false)}
+                      onClick={(event) => { event.preventDefault(); setOpen(false); onGetStarted?.() }}
                       className={`flex flex-1 items-center justify-center gap-2 rounded-full bg-slate py-3 text-xs font-semibold text-white transition-colors duration-200 hover:bg-navy ${focusRing}`}
                   >
                     Get Started
