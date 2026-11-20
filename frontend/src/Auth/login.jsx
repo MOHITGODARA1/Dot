@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { X, Mail, ArrowRight } from 'lucide-react'
+import { X } from 'lucide-react'
 
 // Same accent colors as the rest of the site
 const SAGE = '#779787'
@@ -29,36 +29,40 @@ function GoogleIcon() {
  *  - onClose:       called when the user closes it (X button, backdrop click, Escape)
  *  - onGoogleLogin: optional async function that signs the user in with Google.
  *                   If it throws, an error message is shown. If it succeeds, the pop-up closes.
- *  - onEmailLogin:  optional function that receives the typed email address
  */
-export default function Login({ open, onClose, onGoogleLogin, onEmailLogin }) {
-    const [render, setRender] = useState(open)
+export default function Login({ open, onClose, onGoogleLogin, initialError = '' }) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
-    const [showEmail, setShowEmail] = useState(false)
-    const [email, setEmail] = useState('')
+    const [error, setError] = useState(initialError)
 
     const dialogRef = useRef(null)
     const lastFocus = useRef(null)
     const closeRef = useRef(onClose)
-    closeRef.current = onClose
+    useEffect(() => { closeRef.current = onClose }, [onClose])
 
-    // Keep it mounted while the closing animation plays, then reset
+    // Reset form state after the close transition completes.
     useEffect(() => {
-        if (open) {
-            setRender(true)
-            return
-        }
+        if (open) return
         const t = setTimeout(() => {
-            setRender(false)
             setLoading(false)
             setError('')
-            setShowEmail(false)
-            setEmail('')
         }, 250)
         return () => clearTimeout(t)
     }, [open])
 
+    const handleGoogle = async () => {
+        setError('')
+        setLoading(true)
+        try {
+            if (onGoogleLogin) await onGoogleLogin()
+            else console.log('Google login clicked: pass an onGoogleLogin function to <Login />')
+            // Redirect flows leave the page; only close for non-redirect handlers.
+            closeRef.current()
+        } catch (err) {
+            console.error(err)
+            setError("We couldn't connect to Google. Please try again.")
+            setLoading(false)
+        }
+    }
     // Escape to close, keep Tab inside the pop-up, lock page scroll, restore focus on close
     useEffect(() => {
         if (!open) return
@@ -96,31 +100,10 @@ export default function Login({ open, onClose, onGoogleLogin, onEmailLogin }) {
         }
     }, [open])
 
-    const handleGoogle = async () => {
-        setError('')
-        setLoading(true)
-        try {
-            if (onGoogleLogin) await onGoogleLogin()
-            else console.log('Google login clicked: pass an onGoogleLogin function to <Login />')
-            closeRef.current()
-        } catch (err) {
-            console.error(err)
-            setError("We couldn't connect to Google. Please try again.")
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    const handleEmail = (e) => {
-        e.preventDefault()
-        if (onEmailLogin) onEmailLogin(email.trim())
-        else console.log('Email login:', email.trim())
-    }
-
-    if (!render) return null
+    if (!open) return null
 
     return createPortal(
-        <div className="fixed inset-0 z-50 grid place-items-center p-5">
+        <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto p-4 sm:p-5">
             <style>{`
         @keyframes login-fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes login-fade-out { from { opacity: 1; } to { opacity: 0; } }
@@ -152,7 +135,7 @@ export default function Login({ open, onClose, onGoogleLogin, onEmailLogin }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="login-title"
-                className={`relative w-full max-w-[420px] rounded-3xl border border-navy/10 bg-ivory p-7 shadow-[0_40px_80px_-30px] shadow-navy/50 sm:p-9 ${
+                className={`relative my-auto w-full max-w-[420px] rounded-3xl border border-navy/10 bg-ivory p-6 shadow-[0_40px_80px_-30px] shadow-navy/50 sm:p-9 ${
                     open ? 'login-pop-in' : 'login-pop-out'
                 }`}
             >
@@ -208,49 +191,6 @@ export default function Login({ open, onClose, onGoogleLogin, onEmailLogin }) {
                     <p role="alert" className="login-swap m-0 mt-3 text-center text-xs text-[#b4533a]">
                         {error}
                     </p>
-                )}
-
-                {/* Divider */}
-                <div className="my-5 flex items-center gap-3 text-xs text-muted" aria-hidden="true">
-                    <span className="h-px flex-1 bg-navy/10" />
-                    or
-                    <span className="h-px flex-1 bg-navy/10" />
-                </div>
-
-                {/* Email option */}
-                {showEmail ? (
-                    <form onSubmit={handleEmail} className="login-swap flex flex-col gap-3">
-                        <label htmlFor="login-email" className="sr-only">
-                            Email address
-                        </label>
-                        <input
-                            id="login-email"
-                            type="email"
-                            required
-                            autoFocus
-                            autoComplete="email"
-                            placeholder="you@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full rounded-full border border-navy/15 bg-white px-5 py-3.5 text-[13px] text-navy placeholder:text-muted focus:border-slate focus:outline-none focus:ring-2 focus:ring-slate/20"
-                        />
-                        <button
-                            type="submit"
-                            className={`group inline-flex w-full items-center justify-center gap-3 rounded-full bg-navy py-3.5 text-[13px] font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-slate ${focusRing}`}
-                        >
-                            <span className="text-white">Continue</span>
-                            <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                        </button>
-                    </form>
-                ) : (
-                    <button
-                        type="button"
-                        onClick={() => setShowEmail(true)}
-                        className={`flex w-full items-center justify-center gap-3 rounded-full bg-soft px-5 py-3.5 text-[13px] font-semibold text-navy transition duration-300 hover:-translate-y-0.5 hover:bg-navy/10 ${focusRing}`}
-                    >
-                        <Mail size={17} />
-                        Continue with email
-                    </button>
                 )}
 
                 <p className="m-0 mt-6 text-center text-[11px] leading-[1.6] text-muted">

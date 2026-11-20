@@ -10,6 +10,7 @@ import {
     Pause,
     Play,
 } from 'lucide-react'
+import CardSwipeDemo from '@/components/ui/card-swipe-demo'
 
 // Same accent colors as the hero
 const SAGE = '#779787'
@@ -90,14 +91,11 @@ function useReducedMotion() {
 // Fires once when the element scrolls into view
 function useInView() {
     const ref = useRef(null)
-    const [seen, setSeen] = useState(false)
+    const [seen, setSeen] = useState(() => typeof IntersectionObserver === 'undefined')
     useEffect(() => {
         const el = ref.current
         if (!el) return
-        if (typeof IntersectionObserver === 'undefined') {
-            setSeen(true)
-            return
-        }
+        if (typeof IntersectionObserver === 'undefined') return
         const io = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -476,14 +474,19 @@ export default function Features() {
                     </p>
                 </div>
 
-                {/* Showcase: feature list + live stage */}
+                <div ref={showRef}>
+                {/* Mobile: swipeable feature cards */}
+                <div className={`f-rise ${showSeen ? 'in' : ''} mb-2 lg:hidden`} style={{ '--d': '200ms' }}>
+                    <CardSwipeDemo />
+                </div>
+
+                {/* Desktop showcase: feature list + live stage */}
                 <div
-                    ref={showRef}
                     onPointerEnter={() => setHover(true)}
                     onPointerLeave={() => setHover(false)}
                     onFocusCapture={() => setFocus(true)}
                     onBlurCapture={() => setFocus(false)}
-                    className="grid items-center gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10"
+                    className="hidden items-center gap-6 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10"
                 >
                     {/* List (below the stage on small screens) */}
                     <div className="order-2 space-y-2 lg:order-1">
@@ -581,6 +584,7 @@ export default function Features() {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

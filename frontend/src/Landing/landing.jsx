@@ -5,6 +5,17 @@ import HowItWorks from './component/HowItWorks.jsx'
 import BuildNote from './component/BuildNote.jsx'
 import Footer from './component/Footer.jsx'
 
-export default function Landing({ onGetStarted }) {
-  return <div className="overflow-hidden bg-ivory font-sans text-navy"><Navbar onGetStarted={onGetStarted} /><main><Hero onGetStarted={onGetStarted} /><Features /><HowItWorks /><BuildNote /></main><Footer /></div>
+export default function Landing({ onGetStarted, user, onLogout }) {
+  return (
+    <div className="overflow-hidden bg-ivory font-sans text-navy">
+      <Navbar onGetStarted={onGetStarted} user={user} onLogout={onLogout} />
+      <main>
+        <Hero onGetStarted={onGetStarted} />
+        <Features />
+        <HowItWorks />
+        <BuildNote />
+      </main>
+      <Footer onGetStarted={onGetStarted} />
+    </div>
+  )
 }

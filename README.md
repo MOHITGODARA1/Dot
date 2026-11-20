@@ -23,9 +23,9 @@ The idea behind Dot is to make habit tracking more engaging by allowing partners
 - JavaScript
 
 **Backend**
-- Java
-- Spring Boot
-- Spring Security
+- Node.js
+- Express.js
+- JWT authentication
 
 **Database**
 - MongoDB
@@ -35,7 +35,7 @@ The idea behind Dot is to make habit tracking more engaging by allowing partners
 ```text
 Dot/
 ├── frontend/       # React frontend
-├── backend/        # Spring Boot backend
+├── backend/        # Express.js backend
 └── README.md
 ```
 
@@ -58,16 +58,18 @@ npm run dev
 
 ### 3. Setup Backend
 
-Make sure Java 21 and Maven are installed.
+Make sure Node.js 18+ and MongoDB are installed.
 
 ```bash
 cd backend
-mvn spring-boot:run
+cp .env.example .env
+npm install
+npm run dev
 ```
 
 ### 4. Environment Configuration
 
-Configure your MongoDB connection and other environment variables before running the backend.
+Copy `backend/.env.example` to `backend/.env` and set `MONGODB_URI`, `JWT_SECRET`, and `CLIENT_URL` before running the backend.
 
 ## Project Goal
 

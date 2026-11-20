@@ -57,14 +57,11 @@ function useReducedMotion() {
 // Fires once when the element scrolls into view
 function useInView() {
   const ref = useRef(null)
-  const [seen, setSeen] = useState(false)
+  const [seen, setSeen] = useState(() => typeof IntersectionObserver === 'undefined')
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (typeof IntersectionObserver === 'undefined') {
-      setSeen(true)
-      return
-    }
+    if (typeof IntersectionObserver === 'undefined') return
     const io = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {

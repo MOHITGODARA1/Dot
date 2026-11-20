@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
-import Brand from './Brand.jsx'
 
 const links = [
   ['Home', '#home'],
@@ -12,7 +11,7 @@ const links = [
 const focusRing =
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate'
 
-export default function Navbar({ onGetStarted }) {
+export default function Navbar({ onGetStarted, user, onLogout }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -118,8 +117,7 @@ export default function Navbar({ onGetStarted }) {
 
   return (
       <>
-        <style>{`
-        html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+      <style>{`
         @keyframes nav-enter {
           from { opacity: 0; transform: translateY(-16px) scale(.97); }
           to { opacity: 1; transform: translateY(0) scale(1); }
@@ -164,7 +162,7 @@ export default function Navbar({ onGetStarted }) {
                 className={`shrink-0 rounded-full ${focusRing}`}
             >
               <img
-                  src='./logo.png'
+                  src='/logo.png'
                   alt="dot logo"
                   className="h-7 w-auto md:h-13"
               />
@@ -203,8 +201,20 @@ export default function Navbar({ onGetStarted }) {
 
             {/* Right: actions */}
             <div className="flex items-center gap-1.5 md:gap-2">
-
-
+              {user ? (
+                <div className="hidden items-center gap-2 sm:flex">
+                  <span className="max-w-[140px] truncate text-xs font-medium text-navy">
+                    {user.name}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onLogout?.()}
+                    className={`rounded-full border border-navy/15 px-4 py-2 text-xs font-medium text-navy transition-colors duration-200 hover:bg-navy/5 ${focusRing}`}
+                  >
+                    Log out
+                  </button>
+                </div>
+              ) : (
               <a
                   href="#login"
                   onClick={(event) => { event.preventDefault(); onGetStarted?.() }}
@@ -224,6 +234,7 @@ export default function Navbar({ onGetStarted }) {
                 <ArrowUpRight size={14} />
               </span>
               </a>
+              )}
 
               {/* Hamburger (mobile) */}
               <button
@@ -302,10 +313,21 @@ export default function Navbar({ onGetStarted }) {
                     }`}
                     style={{ transitionDelay: open ? `${80 + links.length * 50}ms` : '0ms' }}
                 >
-                  <a
-                      href="mailto:hello@dot.today"
+                  {user ? (
+                    <button
+                      type="button"
                       tabIndex={open ? 0 : -1}
-                      onClick={() => setOpen(false)}
+                      onClick={() => { setOpen(false); onLogout?.() }}
+                      className={`flex-1 rounded-full border border-navy/15 py-3 text-center text-xs font-medium text-navy transition-colors duration-200 hover:bg-navy/5 ${focusRing}`}
+                    >
+                      Log out ({user.name})
+                    </button>
+                  ) : (
+                    <>
+                  <a
+                  href="#login"
+                      tabIndex={open ? 0 : -1}
+                      onClick={(event) => { event.preventDefault(); setOpen(false); onGetStarted?.() }}
                       className={`flex-1 rounded-full border border-navy/15 py-3 text-center text-xs font-medium text-navy transition-colors duration-200 hover:bg-navy/5 ${focusRing}`}
                   >
                     Log In
@@ -319,6 +341,8 @@ export default function Navbar({ onGetStarted }) {
                     Get Started
                     <ArrowUpRight size={14} />
                   </a>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
