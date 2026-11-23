@@ -10,7 +10,9 @@ function loadConfig(overrides = {}) {
     ...process.env,
     NODE_ENV: 'production',
     MONGODB_URI: 'mongodb://localhost/dot',
-    JWT_SECRET: 'configuration-test-secret',
+    JWT_SECRET: '0123456789abcdef'.repeat(4),
+    JWT_ACCESS_EXPIRES_IN: '15m',
+    JWT_EXPIRES_IN: '',
     GOOGLE_CLIENT_ID: 'configuration-test-client',
     GOOGLE_CLIENT_SECRET: 'configuration-test-secret',
     CLIENT_URL: 'https://frontend.example/',
@@ -46,4 +48,11 @@ test('production rejects insecure and incorrectly shaped OAuth URLs', () => {
     () => loadConfig({ GOOGLE_CALLBACK_URL: 'https://frontend.example/api/auth/google/callback' }),
     /must use the backend origin/,
   );
+});
+
+test('production rejects an in-memory database and weak or mistyped JWT settings', () => {
+  assert.throws(() => loadConfig({ MONGODB_URI: 'memory' }), /persistent MongoDB database/);
+  assert.throws(() => loadConfig({ JWT_SECRET: 'dot-dev-secret-change-in-production' }), /randomly generated secret/);
+  assert.throws(() => loadConfig({ JWT_SECRET: 'too-short' }), /randomly generated secret/);
+  assert.throws(() => loadConfig({ JWT_EXPIRES_IN: '7d', JWT_ACCESS_EXPIRES_IN: '' }), /JWT_ACCESS_EXPIRES_IN/);
 });

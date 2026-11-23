@@ -43,6 +43,18 @@ for (const key of required) {
   }
 }
 
+if (isProd && process.env.MONGODB_URI.trim().toLowerCase() === 'memory') {
+  throw new Error('MONGODB_URI must use a persistent MongoDB database in production; memory is for local development only');
+}
+
+if (isProd && (process.env.JWT_SECRET.length < 43 || /change[-_ ]?me|dev[-_ ]?secret|test[-_ ]?secret|placeholder|replace[-_ ]?me/i.test(process.env.JWT_SECRET))) {
+  throw new Error('JWT_SECRET must be a randomly generated secret of at least 32 bytes in production');
+}
+
+if (isProd && process.env.JWT_EXPIRES_IN && !process.env.JWT_ACCESS_EXPIRES_IN) {
+  throw new Error('JWT_EXPIRES_IN is not used; set JWT_ACCESS_EXPIRES_IN (15m is recommended)');
+}
+
 const clientUrlValue = process.env.CLIENT_URL || (isProd ? '' : 'http://localhost:5173');
 const googleCallbackUrlValue =
   process.env.GOOGLE_CALLBACK_URL ||

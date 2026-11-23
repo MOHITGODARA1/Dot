@@ -33,6 +33,10 @@ npm run dev
 npm start
 ```
 
+For Render, set the Web Service **Start Command** to `npm start` (not `npm run dev`). The development command uses `nodemon`, a development-only dependency that may not be installed in production. Set `NODE_ENV=production`; production startup rejects an in-memory MongoDB URI and weak/placeholder JWT secrets.
+
+Set `JWT_ACCESS_EXPIRES_IN=15m` to configure access-token lifetime. `JWT_EXPIRES_IN` is not read by this application; refresh sessions use their separate fixed 20-day lifetime.
+
 API base: `http://localhost:8080/api`
 
 Interactive sign-in is Google OAuth only. The backend issues app JWTs after Google verifies the user's identity; connection routes accept those JWTs and derive the current account from the token.
