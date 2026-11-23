@@ -31,7 +31,29 @@ if (authChannel) {
 }
 
 export function getApiUrl() {
-  return import.meta.env.VITE_API_URL || 'http://localhost:8080'
+  const configuredUrl = import.meta.env.VITE_API_URL?.trim()
+  if (!configuredUrl && import.meta.env.PROD) {
+    throw new Error('VITE_API_URL must be set to the production API origin')
+  }
+
+  let apiUrl
+  try {
+    apiUrl = new URL(configuredUrl || 'http://localhost:8080')
+  } catch {
+    throw new Error('VITE_API_URL must be an absolute API origin')
+  }
+
+  if (!['http:', 'https:'].includes(apiUrl.protocol) || apiUrl.username || apiUrl.password) {
+    throw new Error('VITE_API_URL must be an HTTP(S) API origin without credentials')
+  }
+  if (import.meta.env.PROD && apiUrl.protocol !== 'https:') {
+    throw new Error('VITE_API_URL must use HTTPS in production')
+  }
+  if (apiUrl.pathname !== '/' || apiUrl.search || apiUrl.hash) {
+    throw new Error('VITE_API_URL must contain only the API origin')
+  }
+
+  return apiUrl.origin
 }
 
 export function getToken() {

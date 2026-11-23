@@ -278,6 +278,43 @@ test('logout revokes the refresh-token family and refresh/logout routes enforce 
   assert.ok(storedRotated.revokedAt);
 });
 
+test('Google OAuth initiation uses the configured callback and rejects mismatched state', async () => {
+  const startResponse = await fetch(`${apiOrigin}/api/auth/google`, { redirect: 'manual' });
+  assert.equal(startResponse.status, 302);
+
+  const authorizationUrl = new URL(startResponse.headers.get('location'));
+  assert.equal(authorizationUrl.origin, 'https://accounts.google.com');
+  assert.equal(authorizationUrl.searchParams.get('redirect_uri'), env.googleCallbackUrl);
+  assert.ok(authorizationUrl.searchParams.get('state'));
+
+  const stateCookie = startResponse.headers.getSetCookie().find((cookie) => cookie.startsWith('dot_oauth_state='));
+  assert.ok(stateCookie);
+  assert.match(stateCookie, /HttpOnly/i);
+  assert.match(stateCookie, /SameSite=Lax/i);
+
+  const callbackResponse = await fetch(
+    `${apiOrigin}/api/auth/google/callback?state=not-the-cookie-state&code=unused`,
+    { headers: { Cookie: stateCookie.split(';')[0] }, redirect: 'manual' },
+  );
+  assert.equal(callbackResponse.status, 302);
+  assert.equal(
+    new URL(callbackResponse.headers.get('location')).origin,
+    env.clientUrl,
+  );
+  assert.match(callbackResponse.headers.get('location'), /authError=/);
+});
+
+test('CORS reflects the normalized configured frontend origin', async () => {
+  const response = await fetch(`${apiOrigin}/api/auth/refresh`, {
+    method: 'OPTIONS',
+    headers: {
+      Origin: env.clientUrl,
+      'Access-Control-Request-Method': 'POST',
+    },
+  });
+  assert.equal(response.headers.get('access-control-allow-origin'), env.clientUrl);
+});
+
 test('authenticated API and Socket.IO update the waiting account in realtime', async () => {
   const alice = await makeUser('Morgan Socket Owner');
   const bob = await makeUser('Nico Socket Guest');
