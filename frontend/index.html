@@ -1,13 +1,95 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Primary SEO -->
+  <title>Dot | Track habits and share your days together</title>
+  <meta
+          name="description"
+          content="Dot is a habit and activity tracker made for two. Share what you're doing, track your time and build better routines together, one habit at a time."
+  />
+  <meta name="author" content="Mohit Godara" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://dot.today/" />
+
+  <!-- App / browser -->
+  <meta name="application-name" content="Dot" />
+  <meta name="apple-mobile-web-app-title" content="Dot" />
+  <!-- Change this to your ivory color (it tints the browser bar on phones) -->
+  <meta name="theme-color" content="#F5F3EE" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="/prifixlogo.png" />
+  <link rel="apple-touch-icon" href="/prifixlogo.png" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Slack, iMessage) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Dot" />
+  <meta property="og:title" content="Dot | Your days, connected." />
+  <meta
+          property="og:description"
+          content="Share your everyday moments, build better routines and see how you grow together. One habit at a time."
+  />
+  <meta property="og:url" content="https://dot.today/" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dot | Your days, connected." />
+  <meta
+          name="twitter:description"
+          content="Share your everyday moments, build better routines and see how you grow together. One habit at a time."
+  />
+
+  <!-- Structured data (helps Google understand what Dot is) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://dot.today/#website",
+          "url": "https://dot.today/",
+          "name": "Dot",
+          "alternateName": "dot.today",
+          "description": "A habit and activity tracker made for two.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://dot.today/#app",
+          "name": "Dot",
+          "url": "https://dot.today/",
+          "description": "Share your everyday moments, track your time and build better routines together.",
+          "applicationCategory": "LifestyleApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@type": "Person",
+            "name": "Mohit Godara"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<!-- Shown to crawlers and users without JavaScript -->
+<noscript>
+  <h1>Dot: your days, connected.</h1>
+  <p>
+    Dot is a habit and activity tracker made for two. Share what you're doing in real time, track your time and
+    build better routines together, one habit at a time. Please enable JavaScript to use Dot.
+  </p>
+</noscript>
+
+<script type="module" src="/src/main.jsx"></script>
+</body>
 </html>

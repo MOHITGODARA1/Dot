@@ -1,3 +1,45 @@
 import { ArrowUpRight } from 'lucide-react'
 import Brand from './Brand.jsx'
-export default function Footer(){const groups=[{title:'Explore',links:[['Home','#home'],['Features','#features'],['How it works','#how-it-works']]},{title:'Say hello',links:[['About Dot','#about'],['Contact','mailto:hello@dot.today'],['Get started','mailto:hello@dot.today']]},{title:'The details',links:[['Privacy policy','mailto:hello@dot.today?subject=Privacy%20Policy'],['Terms of service','mailto:hello@dot.today?subject=Terms%20of%20Service']]}];return <footer className="bg-navy py-[55px] pb-5 text-[#edf0ef] max-md:pt-10"><div className="mx-auto w-[min(1160px,calc(100%-64px))] max-md:w-[calc(100%-40px)]"><div className="flex justify-between border-b border-white/15 pb-11 max-md:block max-md:pb-[30px]"><div><Brand light/><p className="mt-4 text-[10px] leading-[1.8] text-[#bac4c7]">A little closer, every day.<br/>Shared activities and routines for two.</p></div><div className="flex gap-[70px] max-md:mt-[30px] max-md:grid max-md:grid-cols-2 max-md:gap-x-[18px] max-md:gap-y-7">{groups.map(group=><div className="flex flex-col gap-3" key={group.title}><b className="mb-1 text-[9px] tracking-wide text-[#aab9bf]">{group.title}</b>{group.links.map(([label,href])=><a className="flex items-center gap-1 text-[10px] transition-colors hover:text-[#aebfc6]" href={href} key={label}>{label}{['Contact','Get started'].includes(label)&&<ArrowUpRight size={12}/>}</a>)}</div>)}</div></div><div className="flex justify-between pt-[17px] text-[9px] text-[#b9c2c5] max-md:flex-col max-md:gap-3 max-md:text-[8px]"><span>© 2026 Dot. Made for growing together.</span><span>A small reminder: you're in this together <i className="ml-1 not-italic text-[#c4a39a]">♥</i></span></div></div></footer>}
+
+const groups = [
+  { title: 'Explore', links: [['Home', '#home'], ['Features', '#features'], ['How it works', '#how-it-works']] },
+  { title: 'Say hello', links: [['About Dot', '#about'], ['Contact', 'mailto:hello@dot.today'], ['Get started', '#login']] },
+  { title: 'The details', links: [['Privacy policy', 'mailto:hello@dot.today?subject=Privacy%20Policy'], ['Terms of service', 'mailto:hello@dot.today?subject=Terms%20of%20Service']] },
+]
+
+export default function Footer({ onGetStarted }) {
+  return (
+    <footer className="bg-navy py-[55px] pb-5 text-[#edf0ef] max-md:pt-10">
+      <div className="mx-auto w-[min(1160px,calc(100%-64px))] max-md:w-[calc(100%-40px)]">
+        <div className="flex justify-between border-b border-white/15 pb-11 max-md:block max-md:pb-[30px]">
+          <div>
+            <Brand light />
+            <p className="mt-4 text-[10px] leading-[1.8] text-[#bac4c7]">A little closer, every day.<br />Shared activities and routines for two.</p>
+          </div>
+          <div className="flex gap-[70px] max-md:mt-[30px] max-md:grid max-md:grid-cols-2 max-md:gap-x-[18px] max-md:gap-y-7">
+            {groups.map((group) => (
+              <div className="flex flex-col gap-3" key={group.title}>
+                <b className="mb-1 text-[9px] tracking-wide text-[#aab9bf]">{group.title}</b>
+                {group.links.map(([label, href]) => (
+                  <a
+                    className="flex min-h-8 items-center gap-1 text-[10px] transition-colors hover:text-[#aebfc6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    href={href}
+                    key={label}
+                    onClick={label === 'Get started' ? (event) => { event.preventDefault(); onGetStarted?.() } : undefined}
+                  >
+                    {label}
+                    {['Contact', 'Get started'].includes(label) && <ArrowUpRight size={12} aria-hidden="true" />}
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-between pt-[17px] text-[9px] text-[#b9c2c5] max-md:flex-col max-md:gap-3 max-md:text-[8px]">
+          <span>© {new Date().getFullYear()} Dot. Made for growing together.</span>
+          <span>A small reminder: you're in this together <i className="ml-1 not-italic text-[#c4a39a]" aria-hidden="true">♥</i></span>
+        </div>
+      </div>
+    </footer>
+  )
+}

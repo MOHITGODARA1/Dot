@@ -106,7 +106,7 @@ function AnimatedWord({ word, start }) {
   )
 }
 
-export default function Hero() {
+export default function Hero({ onGetStarted }) {
   const reduced = useReducedMotion()
   const sectionRef = useRef(null)
   const burstId = useRef(0)
@@ -323,7 +323,8 @@ export default function Hero() {
                 style={{ '--d': '1400ms' }}
             >
               <a
-                  href="#features"
+                  href="#login"
+                  onClick={(event) => { event.preventDefault(); onGetStarted?.() }}
                   className={`group inline-flex w-full max-w-[300px] items-center justify-between gap-3 rounded-full bg-navy py-2 pl-6 pr-2 text-xs font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-slate hover:shadow-[0_16px_30px_-16px] hover:shadow-navy/60 sm:w-auto sm:justify-start ${focusRing}`}
               >
                 <span className="text-white">Get Started</span>
